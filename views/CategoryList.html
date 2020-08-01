@@ -1,0 +1,20 @@
+{{template "base/base.html" .}}
+{{define "head"}}
+<title>Category List</title>
+{{end}}
+{{define "body"}}
+	<div class="text-right">
+		<a href="/category/add/" class="btn btn-secondary">Add Category</a>
+	</div>
+	{{if .cats}}
+		<ul class="list-group">
+		{{range .cats}}
+			<li class="list-group-item">
+				<a href="/category/edit?id={{.ID}}">{{.Name}}</a>
+			</li>
+		{{end}}
+		</ul>
+	{{else}}
+		<div class="card card-body">No Categories.</div>
+	{{end}}
+{{end}}

@@ -1,0 +1,29 @@
+<form action="/author/save/" method="post">
+	<input type="hidden" name="id" value="{{.ID}}">
+	<div class="card">
+		<div class="card-body">
+			
+			<div class="form-group">
+				<label for="lastName">Last Name</label>
+				<input type="text" name="lastName" id="lastName" class="form-control" value="{{.LastName}}">
+			</div>
+
+			<div class="form-group">
+				<label for="firstName">First Name</label>
+				<input type="text" name="firstName" id="firstName" class="form-control" value="{{.FirstName}}">
+			</div>
+		</div>
+		<div class="card-footer d-flex">
+			<button class="btn btn-primary" type="submit">
+				Save
+			</button>
+			
+			{{if .ID}}
+				<a href="/author/delete?id={{.ID}}" class="btn btn-link ml-auto">
+					Delete
+				</a>
+			{{end}}
+
+		</div>
+	</div>
+</form>

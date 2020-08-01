@@ -1,0 +1,20 @@
+{{template "base/base.html" .}}
+{{define "head"}}
+<title>Author List</title>
+{{end}}
+{{define "body"}}
+	<div class="text-right">
+		<a href="/author/add/" class="btn btn-secondary">Add Authoer</a>
+	</div>
+	{{if .authors}}
+		<ul class="list-group">
+		{{range .authors}}
+			<li class="list-group-item">
+				<a href="/author/edit?id={{.ID}}">{{.LastName}} {{.FirstName}}</a>
+			</li>
+		{{end}}
+		</ul>
+	{{else}}
+		<div class="card card-body">No Authors.</div>
+	{{end}}
+{{end}}

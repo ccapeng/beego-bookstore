@@ -1,0 +1,64 @@
+<form action="/book/save/" method="post">
+	<input type="hidden" name="id" value="{{.ID}}">
+	{{$id := .ID}}
+	{{$categoryID := .categoryId}}
+	{{$publisherID := .publisherId}}
+	{{$authorID := .authorId}}
+	what is the Id? {{ $id }} {{ $categoryID }} {{ $publisherID }} {{ $authorID }}
+	<div class="card">
+		<div class="card-body">
+			
+			<div class="mb-3">
+				<label for="title" class="form-label">Title</label>
+				<input class="form-control" type="text" name="title" id="title" value="{{.Title}}">
+			</div>
+			
+			<div class="mb-3">
+				<label for="category" class="form-label">Category</label>
+				<select name="category" id="category" class="form-control">
+					<option value="">...</option>
+					{{range $cat := .cats}}
+					<option value="{{$cat.ID}}"
+						{{if eq $cat.ID $categoryID}} selected {{end}}
+					>
+						{{$cat.Name}}
+					</option>
+					{{end}}
+				</select>
+			</div>
+
+			<div class="mb-3">
+				<label for="publisher" class="form-label">Publisher</label>
+				<select name="publisher" id="publisher" class="form-control">
+					<option value="">...</option>
+					{{range .publishers}}
+					<option value="{{.ID}}"
+						{{if eq .ID $publisherID}} selected {{end}}
+					>
+						{{.Name}}
+					</option>
+					{{end}}				
+				</select>
+			</div>
+
+			<div class="mb-3">
+				<label for="author" class="form-label">Author</label>
+				<select name="author" id="author" class="form-control">
+					<option value="">...</option>
+					{{range .authors}}
+					<option value="{{.ID}}"
+						{{if eq .ID $authorID}} selected {{end}}
+					>
+						{{.LastName}} {{.FirstName}}
+					</option>
+					{{end}}
+				</select>
+			</div>
+		</div>
+		<div class="card-footer">
+			<button type="submit">
+				Save
+			</button>
+		</div>
+	</div>
+</form>

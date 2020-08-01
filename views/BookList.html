@@ -1,0 +1,38 @@
+{{template "base/base.html" .}}
+{{define "head"}}
+<title>Book List</title>
+{{end}}
+{{define "body"}}
+	<div class="text-right">
+		<a href="/book/add/" class="btn btn-secondary">Add Book</a>
+	</div>
+	{{if .books}}
+		<ul class="list-group">
+		{{range $book := .books}}
+			<li class="list-group-item">
+				<a href="/book/edit?id={{$book.ID}}">{{$book.Title}}</a>
+				<ul>
+					<li>
+						Category: 
+						{{if $book.Category}}
+							{{$book.Category.Name}}
+						{{end}}
+					</li>
+					<li>Publisher: 
+						{{if $book.Publisher}}
+							{{$book.Publisher.Name}}
+						{{end}}
+					</li>
+					<li>Author: 
+						{{if $book.Author}}
+							{{$book.Author.LastName}} {{$book.Author.FirstName}}
+						{{end}}
+					</li>
+				</ul>
+			</li>
+		{{end}}
+		</ul>
+	{{else}}
+		<div class="card card-body">No Books.</div>
+	{{end}}
+{{end}}
